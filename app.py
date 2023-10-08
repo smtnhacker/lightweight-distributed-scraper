@@ -105,8 +105,8 @@ def lambda_handler(event, context):
         uploadByteStream = bytes(json.dumps(res).encode('utf-8'))
         s3.put_object(Bucket=bucket, Key=filename, Body=uploadByteStream)
 
-        sns.publish(TopicArc='arn:aws:sns:ap-southeast-1:910774986370:CloudWatch_Empty_SQS',
-                       message=f'Finished scraping {url}: {datetime.datetime.now()}')
+        sns.publish(TopicArn='arn:aws:sns:ap-southeast-1:910774986370:CloudWatch_Empty_SQS',
+                    Message=f'Finished scraping {url}: {datetime.datetime.now()}')
 
         return {
             "status": 200,
